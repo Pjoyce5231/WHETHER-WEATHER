@@ -1,20 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html="en">
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/CSS/style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
-        crossorigin="anonymous"></script>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Whether Weather</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="assets/CSS/style.css" />
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="
+            crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <header>Whether Weather</header>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6">
+                    <h4>Instructions:</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="cityState" type="text" class="validate">
+                    <label id="cityState" for="City, State">City, State</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col s6">
+                    <input type="date">
+                    <label for="Start Date">Start Date</label>
+                </div>
+                <div class="col s6">
+                    <input type="date">
+                    <label for="End Date"> Date</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 offset-s5">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                        <i class="material-icons right"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 offset-s5">
+                    <footer>Copyright (C)</footer>
+                </div>
+            </div>
+        </div>
+        </div>
+    </body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
     <script src="assets/js/main.js"></script>
-</head>
 
-<body>
-
-</body>
-
-</html>
+    </html>
