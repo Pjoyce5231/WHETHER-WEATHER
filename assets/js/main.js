@@ -16,6 +16,7 @@ $(document).ready(function () {
       console.log(userInput);
       grabWeather(userInput);
       grabEvents(userInput);
+
       
     });
   };
@@ -34,19 +35,20 @@ $(document).ready(function () {
       })
 
       .then(function (data) {
+        console.log( queryURL1 )
         console.log(data);
 
         //  // // Transfer content to HTML
-        $(".cityEvent").text("City: " + data._embedded.events["0"].dates.timezone);
-        $(".displayShow").text("Event: " + data._embedded.events["0"].name);
-        $(".displayDate").text("Date: " + data._embedded.events["0"].dates.start.localDate);
+        $(".cityEvent").text("City: " + data._embedded.events[0]._embedded.venues[0].city.name);
+        $(".displayShow").text("Event: " + data._embedded.events[0].name);
+        $(".displayDate").text("Date: " + data._embedded.events[0].dates.start.localDate);
 
 
 
         //  // Log the data in the console as well
-        console.log("City: " + data._embedded.events["0"].dates.timezone);
-        console.log("Event: " + data._embedded.events["0"].name);
-        console.log("Date: " + data._embedded.events["0"].dates.start.localDate);
+        console.log("City: " + data._embedded.events[0]._embedded.venues[0].city.name);
+        console.log("Event: " + data._embedded.events[0].name);
+        console.log("Date: " + data._embedded.events[0].dates.start.localDate);
 
 
       })
@@ -74,13 +76,13 @@ $(document).ready(function () {
         // // Transfer content to HTML
         $(".date").text("Date: " + response.list[0].dt_txt);
         $(".city").text("City: " + response.city.name);
-        $(".wind").text("Wind Speed: " + response.wind.speed);
+        $(".wind").text("Wind Speed: " + response.list[0].wind.speed);
         $(".humidity").text("Humidity: " + response.list[0].main.humidity);
-        $(".tempmax").text("Max Temperature (F) " + response.main.temp);
+        $(".tempmax").text("Max Temperature (F) " + response.list[0].main.temp);
 
         // logging data in console
         console.log("Wind Speed: " + response.wind.speed);
-        console.log("Humidity: " + response.list["0"].main.humidity);
+        console.log("Humidity: " + response.list[0].main.humidity);
         console.log("Temperature (F): " + response.main.temp);
       });
 
