@@ -15,18 +15,19 @@ $(document).ready(function () {
       // console.log("Ive been clicked!")
       console.log(userInput);
       grabWeather(userInput);
-      grabEvents();
+      grabEvents(userInput);
       
     });
   };
 
   submitButton();
+  
+  
 
 
- 
 
-  function grabEvents() {
-    var queryURL1 = "https://app.ticketmaster.com/discovery/v2/events.json?apikey=DUZG0wZZTxPGg5l7FOQEp6cBtgvkAlkR";
+  function grabEvents(cityEvent) {
+    var queryURL1 = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + cityEvent + "&apikey=DUZG0wZZTxPGg5l7FOQEp6cBtgvkAlkR";
     $.ajax({
         url: queryURL1,
         method: "GET"
