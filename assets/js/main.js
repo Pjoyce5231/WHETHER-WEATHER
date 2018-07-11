@@ -1,8 +1,3 @@
-// api.openweathermap.org/data/2.5/forecast?q={city name},{country code}
-
-// function eventInfo({
-
-
 $(document).ready(function () {
 
 
@@ -14,7 +9,6 @@ $(document).ready(function () {
       var userInput = $("#cityState").val().trim();
       // console.log("Ive been clicked!")
       console.log(userInput);
-      grabWeather(userInput);
       grabEvents(userInput);
 
 
@@ -24,7 +18,7 @@ $(document).ready(function () {
   submitButton();
 
   function grabEvents(cityEvent) {
-    var queryURL1 = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + cityEvent + "&startDateTime=2018-07-09T01:00:00Z&endDateTime=2018-07-15T01:00:00Z&apikey=DUZG0wZZTxPGg5l7FOQEp6cBtgvkAlkR";
+    var queryURL1 = "https://app.ticketmaster.com/discovery/v2/events.json?city=" + cityEvent + "&startDateTime=2018-07-11T01:00:00Z&endDateTime=2018-07-17T01:00:00Z&apikey=DUZG0wZZTxPGg5l7FOQEp6cBtgvkAlkR";
     $.ajax({
         url: queryURL1,
         method: "GET"
@@ -33,85 +27,72 @@ $(document).ready(function () {
       .then(function (data) {
         // console.log( queryURL1 )
         console.log(data);
-        
-        for ( var i = 0; i < data._embedded.events.length; i++ ) {
 
-          var event = data._embedded.events[i];
+        var APIKey = "420abb5e06629c9bad292e81f7b5df9c";
 
-          var eventRow = $("<tr>");
-          var dateTd = $("<td>");
-          var timeTd = $("<td>");
-          var nameTd = $("<td>");
-          var venueTd = $("<td>");
+        var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityEvent + "&mode=json&units=imperial&appid=420abb5e06629c9bad292e81f7b5df9c"
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+          })
+          // We store all of the retrieved data inside of an object called "response"
+          .then(function (response) {
 
+            console.log(queryURL);
+            console.log(response);
 
-          dateTd.text(event.dates.start.localDate);
-          timeTd.text(event.dates.start.dateTime)
-          nameTd.text(event.name);
-          venueTd.text(event._embedded.venues[0].name);
+            for (var i = 0; i < data._embedded.events.length; i++) {
 
-          eventRow.append( dateTd, timeTd, nameTd, venueTd );
+              var event = data._embedded.events[i];
 
-          $("#eventsTableBody").append(eventRow);
-
-        }
-
-      })
-
+              var eventRow = $("<tr>");
+              var dateTd = $("<td>");
+              var timeTd = $("<td>");
+              var nameTd = $("<td>");
+              var venueTd = $("<td>");
 
 
+              dateTd.text(event.dates.start.localDate);
+              var eventTime = moment(event.dates.start.localDate + "T" + event.dates.start.localTime);
+              timeTd.text(eventTime.format('LT'));
+              nameTd.text(event.name);
+              venueTd.text(event._embedded.venues[0].name);
 
-  };
+              eventRow.append(dateTd, timeTd, nameTd, venueTd);
 
+              $("#eventsTableBody").append(eventRow);
 
+              // converted date stamp to unix 
+console.log( event.name);
+              var StartTime = eventTime.unix();
+              for (var j = 0; j < response.list.length; j++) {
+                var weather = response.list[i].dt;
+                var weatherTimePlus3 = weather + 10800000;
+                
 
-  function grabWeather(cityName) {
-    var APIKey = "420abb5e06629c9bad292e81f7b5df9c";
+console.log( StartTime, weather, weatherTimePlus3 );
+console.log( StartTime >= weather && StartTime < weatherTimePlus3 );
 
-    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&mode=json&appid=420abb5e06629c9bad292e81f7b5df9c"
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-      })
-      // We store all of the retrieved data inside of an object called "response"
-      .then(function (response) {
+                if (StartTime >= weather && StartTime < weatherTimePlus3) {
+                  var weatherTd = $("<td>");
+                 
+                  weatherTd.text(response.list[j].weather["0"].description);
+                 
+                  eventRow.append(weatherTd);
+                  $("#eventsTableBody").append(eventRow);
+                  j = 0;
+                  break;
+                  
+                
+                }
+              }
 
-         console.log(queryURL);
-        console.log(response);
+            }
 
-        
+          })
 
-   
       });
-
 
   };
 
 });
-
-            // hard code for events
-//  // // Transfer content to HTML
-        // $(".cityEvent").text("City: " + data._embedded.events[key]._embedded.venues[key].city.name)
-
-        // $(".displayDate").text("Date: " + data._embedded.events[0].dates.start.localDate);
-        // $(".displayVenue").text("Venue: " + data._embedded.events[0]._embedded.venues[0].name);
-
-
-        // //  // Log the data in the console as well
-        // console.log("City: " + data._embedded.events[0]._embedded.venues[0].city.name);
-        // console.log("Event: " + data._embedded.events[0].name);
-        // console.log("Date: " + data._embedded.events[0].dates.start.localDate);
-
-        // hard code for the weather
-
-     // // Transfer content to HTML
-        // $(".date").text("Date: " + response.list[0].dt_txt);
-        // $(".city").text("City: " + response.city.name);
-        // $(".wind").text("Wind Speed: " + response.list[0].wind.speed);
-        // $(".humidity").text("Humidity: " + response.list[0].main.humidity);
-        // $(".tempmax").text("Max Temperature (F) " + response.list[0].main.temp);
-
-        // // logging data in console
-        // console.log("Wind Speed: " + response.wind.speed);
-        // console.log("Humidity: " + response.list[0].main.humidity);
-        // console.log("Temperature (F): " + response.main.temp);
