@@ -1,22 +1,35 @@
 body {
-    background-color: rgb(64, 72, 107);
+    background-image: url(another.jpg);
+    height: 100%; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     margin: auto;
     color: #ffffff;
 }
 
+.container2{
+    background-color:#272b33;
+    opacity: 0.9;
+    margin: 10%;
+   
+}
 header {
-    position: fixed;
+    position: absolute;
     text-align: center;
     font-size: 50px;
+    font-weight: bold;
     left: 0;
     right: 0;
     margin: auto;
-    background-color: rgb(61, 61, 61);
+    background-color:#272b33;
     color: whitesmoke;
+    
 }
 h4{
     margin-top: 100px;
     font-size: 25px;
+   font-weight: bold;
 }
 
 footer {
@@ -36,4 +49,8 @@ footer {
 
 input {
     color: #ffffff;
+}
+
+#cityState{
+    text-align: center;
 }

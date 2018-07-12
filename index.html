@@ -13,24 +13,26 @@
     </head>
 
     <body>
-
         <div class="container">
             <div class="row">
                 <div class="col s12">
                     <header>WHETHER WEATHER</header>
                 </div>
             </div>
+        </div>
+        <div class="container2">
+
             <div class="row">
                 <div class="col s12 center">
-                    <h4>Instructions:</h4>
-                    <p>Insert a city and get the top 20 events for that city.
-                    You will also be provided with the correlated weather for the times and dates of the events provided.</p>
+                    <h4>Instructions</h4>
+                    <p>Insert a city and get the top 20 events for that city. You will also be provided with the correlated
+                        weather for the times and dates of the events provided.</p>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
                     <input id="cityState" type="text" class="validate">
-                    <label id="cityState" for="City, State">City, State</label>
+                    <label id="cityState" for="City, State">  City </label>
                 </div>
             </div>
 
@@ -50,6 +52,8 @@
                         <th>Name</th>
                         <th>Venue</th>
                         <th>Weather</th>
+                        <th>Temperature</th>
+                        <th>Humidity</th>
                     </thead>
                     <tbody id="eventsTableBody"></tbody>
                 </table>
